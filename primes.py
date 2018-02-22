@@ -158,7 +158,7 @@ def compare_times(n):
 
 if __name__ == "__main__":
     #unittest.main()
-    print("finding 100 primes requires {} comparisons".format(prime_naive_comparisons(100)))
+    #print("finding 100 primes requires {} comparisons".format(prime_naive_comparisons(100)))
     time_nprimes_naive(100)
     print("finding 200 primes requires {} comparisons".format(prime_naive_comparisons(200)))
     time_nprimes_naive(200)
