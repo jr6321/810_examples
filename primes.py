@@ -31,6 +31,7 @@ def next_prime_naive():
     cur = 2
     while True:   # potentially generate an infinite number of primes
         for i in range(2, cur):
+            print('checking {} % {}'.format(cur, i))
             if cur % i == 0:
                 break  # cur is divisible by i so look at next value of cur
         else:
@@ -158,7 +159,7 @@ def compare_times(n):
 
 if __name__ == "__main__":
     #unittest.main()
-    print("finding 10 primes requires {} comparisons".format(prime_naive_comparisons(10)))
+    print("finding 10 primes requires {} comparisons".format(prime_naive_comparisons(11)))
     #print("finding 100 primes requires {} comparisons".format(prime_naive_comparisons(100)))
     time_nprimes_naive(100)
     print("finding 200 primes requires {} comparisons".format(prime_naive_comparisons(200)))
