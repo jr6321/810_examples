@@ -15,7 +15,7 @@ def next_prime():
 
     while True:   # potentially generate an infinite number of primes
         for p in primes:
-            print('checking {} % {}'.format(cur, p))
+            #print('checking {} % {}'.format(cur, p))
             if cur % p == 0:
                 break
         else:
@@ -31,7 +31,7 @@ def next_prime_naive():
     cur = 2
     while True:   # potentially generate an infinite number of primes
         for i in range(2, cur):
-            print('checking {} % {}'.format(cur, i))
+            #print('checking {} % {}'.format(cur, i))
             if cur % i == 0:
                 break  # cur is divisible by i so look at next value of cur
         else:
@@ -94,7 +94,7 @@ def nth_prime(n):
         if i + 1 >= n:
             return p
 
-def nth_prime2(n):
+def nth_prime_naive(n):
     """ return the nth prime number using next_prime2(), not next_prime() """
     for i, p in enumerate(next_prime_naive()):
         if i + 1 >= n:
@@ -107,9 +107,9 @@ class PrimeTest(unittest.TestCase):
         self.assertEqual(nth_prime(2), 3)
         self.assertEqual(nth_prime(5), 11)
 
-        self.assertEqual(nth_prime2(1), 2)
-        self.assertEqual(nth_prime2(2), 3)
-        self.assertEqual(nth_prime2(5), 11)
+        self.assertEqual(nth_prime_naive(1), 2)
+        self.assertEqual(nth_prime_naive(2), 3)
+        self.assertEqual(nth_prime_naive(5), 11)
 
 
 def time_nprimes_naive(n):
@@ -138,21 +138,13 @@ def timeit(func, *args, **kwargs):
 
 
 def compare_times(n):
-    start1 = time.time()
-    nth_prime(n)
-    end1 = time.time()
+    nth_result, nth_secs = timeit(nth_prime, n)
+    nth2_result, nth2_secs = timeit(nth_prime2, n)
 
-    start2 = time.time()
-    nth_prime2(n)
-    end2 = time.time()
-
-    diff1 = end1 - start1
-    diff2 = end2 - start2
-
-    if diff1 < diff2:
-        print("nth_prime({0}) beat nth_prime2({0}) by {1:.5} seconds".format(n, diff1))
+    if nth_secs < nth2_secs:
+        print("nth_prime({0}) beat nth_prime2({0}) by {1:.5} seconds".format(n, nth2_secs - nth_secs))
     else:
-        print("nth_prime2({0}) beat nth_prime({0}) by {1:.5} seconds".format(n, diff2))
+        print("nth_prime2({0}) beat nth_prime({0}) by {1:.5} seconds".format(n, nth_secs - nth2_secs))
 
 
 
