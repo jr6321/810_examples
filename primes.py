@@ -131,11 +131,10 @@ def time_nprimes(n):
     print("better: {}: {} comparisons {:.5f} seconds".format(n, comparisons, end - start))
 
 def timeit(func, *args, **kwargs):
-    print("start timing", args, kwargs)
     start = time.time()
-    func(args, kwargs)
+    result = func(*args, **kwargs)
     end = time.time()
-    return end - start
+    return result, end - start
 
 
 def compare_times(n):
@@ -159,7 +158,7 @@ def compare_times(n):
 
 if __name__ == "__main__":
     #unittest.main()
-    print("finding 10 primes requires {} comparisons".format(prime_naive_comparisons(10)))
+    print("finding 10 primes requires {} comparisons".format(prime_naive_comparisons(12)))
     #print("finding 100 primes requires {} comparisons".format(prime_naive_comparisons(100)))
     time_nprimes_naive(100)
     print("finding 200 primes requires {} comparisons".format(prime_naive_comparisons(200)))
