@@ -81,6 +81,7 @@ def prime_comparisons(n):
     return comparisons
 
 def is_prime(n):
+    """ return True/False if n is prime """
     for p in next_prime():
         if p == n:
             return True
